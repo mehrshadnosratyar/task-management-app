@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Task {
-  id          Int      @id @unique
+  id          Int      @id @unique @default(autoincrement())
   owner       Int      @unique
   title       String   @db.VarChar(255)
   description String   @db.Text
