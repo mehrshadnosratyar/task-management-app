@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import  localFont  from 'next/font/local'
 import './globals.css'
+import Navbar from './Navbar'
 
 const danaRegular = localFont({
   src:'../public/fonts/Dana/woff2/DanaFaNum-Regular.woff2'
@@ -22,8 +23,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html>
-      <body className={danaDemiBold.className}>{children}</body>
+    <html dir='rtl'>
+      <body className={danaMedium.className}>
+        <section className='flex'>
+            <Navbar/>
+          <main className='p-10'>
+        {children}
+          </main>
+        </section>
+        </body>
     </html>
   )
 }
