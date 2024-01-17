@@ -4,8 +4,7 @@ import {z} from 'zod'
 
 const taskSchema = z.object({
     title: z.string().min(1).max(255),
-    discription:z.string().min(1),
-    owner:z.number().min(1)
+    description:z.string().min(1)
 })
 
 export async function POST(request :NextRequest){
@@ -16,5 +15,5 @@ export async function POST(request :NextRequest){
     const newTask = await prisma.task.create({
         data : {title:body.title , description:body.description , owner:body.owner}
     })
-    return NextResponse.json(newTask,{status:200})
+    return NextResponse.json(newTask,{status:201})
 }
