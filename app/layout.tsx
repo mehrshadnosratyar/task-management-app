@@ -3,16 +3,19 @@ import  localFont  from 'next/font/local'
 import './globals.css'
 import Navbar from './Navbar'
 import '@radix-ui/themes/styles.css';
-import { Theme } from '@radix-ui/themes';
+import { Theme, ThemePanel } from '@radix-ui/themes';
 
 const danaRegular = localFont({
-  src:'../public/fonts/Dana/woff2/DanaFaNum-Regular.woff2'
+  src:'../public/fonts/Dana/woff2/DanaFaNum-Regular.woff2',
+  variable:'--font-dana-regular'
 })
 const danaMedium = localFont({
-  src:'../public/fonts/Dana/woff2/DanaFaNum-Medium.woff2'
+  src:'../public/fonts/Dana/woff2/DanaFaNum-Medium.woff2',
+  variable:'--font-dana-medium'
 })
 const danaDemiBold = localFont({
-  src:'../public/fonts/Dana/woff2/DanaFaNum-DemiBold.woff2'
+  src:'../public/fonts/Dana/woff2/DanaFaNum-DemiBold.woff2',
+  variable:'--font-dana-demibold'
 })
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -26,7 +29,7 @@ export default function RootLayout({
 }) {
   return (
     <html dir='rtl'>
-      <body className={danaMedium.className}>
+      <body className={danaRegular.variable}>
           <Theme>
         <section className='flex'>
             <Navbar/>

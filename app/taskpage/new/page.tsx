@@ -4,9 +4,12 @@ const NewTask = () => {
   return (
     <div className='max-w-xl space-y-4'>
         <TextFieldRoot>
-            <TextFieldInput size="3" placeholder='عنوان تسک' />
+            <TextFieldInput placeholder='عنوان تسک' />
         </TextFieldRoot>
-            <TextArea size="3" placeholder='توضیحات تسک' />
+            <TextFieldRoot>
+            <TextFieldInput placeholder='شناسه دارنده تسک' />
+        </TextFieldRoot>
+            <TextArea placeholder='توضیحات تسک' />
             <Button>افزودن تسک جدید</Button>
     </div>
   )
