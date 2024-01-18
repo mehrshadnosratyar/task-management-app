@@ -4,7 +4,6 @@ import { usePathname } from "next/navigation"
 
 const Navbar = () => {
     const currentpage = usePathname()
-    console.log(currentpage);
     const manageList:{lable:string,path:string}[] =[
         {lable:"پنل کاربری" , path:"/"},
         {lable:"لیست وظایف" , path:"/taskpage"}

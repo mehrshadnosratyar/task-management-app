@@ -12,7 +12,7 @@ datasource db {
 
 model Task {
   id          Int      @id @unique @default(autoincrement())
-  owner       Int      @unique
+  owner       Int
   title       String   @db.VarChar(255)
   description String   @db.Text
   status      Status   @default(OPEN)
