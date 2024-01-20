@@ -33,7 +33,7 @@ const NewTask = () => {
   const [isSubmiting,setSubmiting] = useState(false)
   error ? setTimeout(() => setError(""), 3000) : null;
   return (
-    <div className="max-w-xl space-y-4">
+    <div className="max-w-2xl space-y-4 mx-auto mt-40 bg-sky-100 p-8 rounded-md">
       {error && (
         <Callout.Root color="red">
           <Callout.Text>{error} </Callout.Text>
@@ -65,6 +65,7 @@ const NewTask = () => {
         <TextFieldRoot>
           <TextFieldInput
             type="number"
+            min={1}
             placeholder="شناسه دارنده تسک"
             {...register('owner')}
           />
