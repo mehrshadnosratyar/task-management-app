@@ -12,6 +12,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { taskSchema } from "@/app/taskSchema";
+import BtnLoader from "@/app/components/btnLoader";
+import { boolean } from "zod";
 
 interface taskForm {
   title: string;
@@ -28,7 +30,8 @@ const NewTask = () => {
     resolver: zodResolver(taskSchema),
   });
   const [error, setError] = useState("");
-  error ? setTimeout(() => setError(""), 2000) : null;
+  const [isSubmiting,setSubmiting] = useState(false)
+  error ? setTimeout(() => setError(""), 3000) : null;
   return (
     <div className="max-w-xl space-y-4">
       {error && (
@@ -40,11 +43,13 @@ const NewTask = () => {
         className="space-y-3"
         onSubmit={handleSubmit(async (data) => {
           try {
+            setSubmiting(true)
             if (typeof data.owner == "string")
-              data.owner = parseInt(data.owner);
-            await axios.post("/api/tasks", data);
-            router.push("/taskpage");
+            data.owner = parseInt(data.owner);
+          await axios.post("/api/tasks", data);
+          router.push("/taskpage");
           } catch (error) {
+            setSubmiting(false)
             setError("مشکلی رخ داده لطفا دوباره اقدام کنید");
           }
         })}
@@ -61,7 +66,7 @@ const NewTask = () => {
           <TextFieldInput
             type="number"
             placeholder="شناسه دارنده تسک"
-            {...register("owner")}
+            {...register('owner')}
           />
         </TextFieldRoot>
         {errors.owner && (
@@ -75,7 +80,10 @@ const NewTask = () => {
             توضیحات تسک نامعتبر است
           </p>
         )}
-        <Button>افزودن تسک جدید</Button>
+        <Button disabled={isSubmiting}>
+          افزودن تسک جدید
+          {isSubmiting && <BtnLoader/>}
+        </Button>
       </form>
     </div>
   );
