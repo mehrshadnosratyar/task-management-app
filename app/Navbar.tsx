@@ -9,8 +9,8 @@ const Navbar = () => {
     { lable: "لیست وظایف", path: "/taskpage" },
   ];
   return (
-    <aside className="w-1/6 py-2 px-5 h-screen pt-10 space-y-7 overflow-hidden">
-      <div>
+    <aside className="w-1/6 h-screen pt-12 space-y-7 overflow-hidden bg-case-200">
+      <div className="text-center">
         <h1>کاربر</h1>
       </div>
       <ul className="flex flex-col gap-3">
@@ -18,8 +18,8 @@ const Navbar = () => {
           <Link href={item.path} key={item.path}>
             <li
               className={`${
-                item.path === currentpage ? "bg-sky-500" : "bg-sky-200"
-              } p-2 py-3 rounded-l-3xl rounded-r-md hover:bg-sky-300 transition-all`}
+                item.path === currentpage ? "bg-slate-800" : "bg-inherit"
+              } px-4 py-4 rounded-l-md hover:bg-slate-700 transition-all`}
             >
               {item.lable}
             </li>

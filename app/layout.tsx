@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "./Navbar";
-import "@radix-ui/themes/styles.css";
-import { Theme, ThemePanel } from "@radix-ui/themes";
 
 const danaRegular = localFont({
   src: "../public/fonts/Dana/woff2/DanaFaNum-Regular.woff2",
@@ -28,14 +26,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html dir="rtl">
-      <body className={`${danaRegular.variable}`}>
-        <Theme>
+    <html dir="rtl" data-theme="sunset">
+      <body className={`${danaRegular.variable} text-zinc-50`}>
           <section className="flex">
             <Navbar />
             <main className="p-10 w-full h-screen overflow-auto">{children}</main>
           </section>
-        </Theme>
       </body>
     </html>
   );

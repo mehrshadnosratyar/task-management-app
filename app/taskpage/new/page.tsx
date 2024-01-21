@@ -1,11 +1,4 @@
 "use client";
-import {
-  Button,
-  TextArea,
-  TextFieldInput,
-  TextFieldRoot,
-  Callout,
-} from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -13,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { taskSchema } from "@/app/taskSchema";
 import BtnLoader from "@/app/components/btnLoader";
-import { boolean } from "zod";
 
 interface taskForm {
   title: string;
@@ -30,61 +22,73 @@ const NewTask = () => {
     resolver: zodResolver(taskSchema),
   });
   const [error, setError] = useState("");
-  const [isSubmiting,setSubmiting] = useState(false)
+  const [isSubmiting, setSubmiting] = useState(false);
   error ? setTimeout(() => setError(""), 3000) : null;
   return (
-    <div className="max-w-2xl space-y-4 mx-auto mt-40 bg-sky-100 p-8 rounded-md">
+    <div className="max-w-2xl bg-neutral space-y-4 mx-auto mt-10 p-8 rounded-md">
       {error && (
-        <Callout.Root color="red">
-          <Callout.Text>{error} </Callout.Text>
-        </Callout.Root>
+        <div className="toast toast-start mb-10">
+          <div className="alert alert-error">{error}</div>
+        </div>
       )}
       <form
-        className="space-y-3"
+        className="space-y-10 text-center"
         onSubmit={handleSubmit(async (data) => {
           try {
-            setSubmiting(true)
+            setSubmiting(true);
             if (typeof data.owner == "string")
-            data.owner = parseInt(data.owner);
-          await axios.post("/api/tasks", data);
-          router.push("/taskpage");
+              data.owner = parseInt(data.owner);
+            await axios.post("/api/tasks", data);
+            router.push("/taskpage");
           } catch (error) {
-            setSubmiting(false)
+            setSubmiting(false);
             setError("مشکلی رخ داده لطفا دوباره اقدام کنید");
           }
         })}
       >
-        <TextFieldRoot>
-          <TextFieldInput placeholder="عنوان تسک" {...register("title")} />
-        </TextFieldRoot>
+        <div>
+          <input
+            type="text"
+            className="input input-primary w-1/2"
+            placeholder="عنوان تسک"
+            {...register("title")}
+          />
+        </div>
         {errors.title && (
           <p className="text-xs p-2 bg-red-200 rounded-md text-red-600 w-max">
             عنوان تسک نامعترب است
           </p>
         )}
-        <TextFieldRoot>
-          <TextFieldInput
+        <div>
+          <input
             type="number"
+            className="input input-primary w-1/2"
             min={1}
             placeholder="شناسه دارنده تسک"
-            {...register('owner')}
+            {...register("owner")}
           />
-        </TextFieldRoot>
+        </div>
         {errors.owner && (
           <p className="text-xs p-2 bg-red-200 rounded-md text-red-600 w-max">
             شناسه نامعتبر است
           </p>
         )}
-        <TextArea placeholder="توضیحات تسک" {...register("description")} />
+        <div>
+          <textarea
+            className="textarea textarea-primary w-1/2"
+            placeholder="توضیحات تسک"
+            {...register("description")}
+          />
+        </div>
         {errors.description && (
           <p className="text-xs p-2 bg-red-200 rounded-md text-red-600 w-max">
             توضیحات تسک نامعتبر است
           </p>
         )}
-        <Button disabled={isSubmiting}>
+        <button className="btn btn-secondary" disabled={isSubmiting}>
           افزودن تسک جدید
-          {isSubmiting && <BtnLoader/>}
-        </Button>
+          {isSubmiting && <BtnLoader />}
+        </button>
       </form>
     </div>
   );
