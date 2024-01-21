@@ -9,7 +9,7 @@ const Navbar = () => {
     { lable: "لیست وظایف", path: "/taskpage" },
   ];
   return (
-    <aside className="w-1/6 h-screen pt-12 space-y-7 overflow-hidden bg-case-200">
+    <aside className="w-1/4 lg:w-1/6 h-screen pt-12 space-y-7 overflow-hidden bg-case-200">
       <div className="text-center">
         <h1>کاربر</h1>
       </div>

@@ -23,7 +23,7 @@ const NewTask = () => {
   });
   const [error, setError] = useState("");
   const [isSubmiting, setSubmiting] = useState(false);
-  error ? setTimeout(() => setError(""), 3000) : null;
+  error ? setTimeout(() => setError(""), 4000) : null;
   return (
     <div className="max-w-2xl bg-neutral space-y-4 mx-auto mt-10 p-8 rounded-md">
       {error && (
@@ -56,7 +56,7 @@ const NewTask = () => {
         </div>
         {errors.title && (
           <p className="text-xs p-2 bg-red-200 rounded-md text-red-600 w-max">
-            عنوان تسک نامعترب است
+            عنوان تسک معتبر است
           </p>
         )}
         <div>
