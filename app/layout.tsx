@@ -29,11 +29,11 @@ export default function RootLayout({
 }) {
   return (
     <html dir="rtl">
-      <body className={danaRegular.variable}>
+      <body className={`${danaRegular.variable}`}>
         <Theme>
           <section className="flex">
             <Navbar />
-            <main className="p-10 w-full">{children}</main>
+            <main className="p-10 w-full h-screen overflow-auto">{children}</main>
           </section>
         </Theme>
       </body>
