@@ -9,7 +9,7 @@ const Navbar = () => {
     { lable: "لیست وظایف", path: "/taskpage" },
   ];
   return (
-    <aside className="w-1/4 lg:w-1/6 h-screen pt-12 space-y-7 overflow-hidden bg-case-200">
+    <aside className="w-1/4 lg:w-1/5 h-screen pt-12 space-y-7 overflow-hidden bg-base-200">
       <div className="text-center">
         <h1>کاربر</h1>
       </div>
@@ -19,7 +19,7 @@ const Navbar = () => {
             <li
               className={`${
                 item.path === currentpage ? "bg-slate-800" : "bg-inherit"
-              } px-4 py-4 rounded-l-md hover:bg-slate-700 transition-all`}
+              } px-4 py-4 hover:bg-slate-700 transition-all`}
             >
               {item.lable}
             </li>

@@ -8,9 +8,9 @@ const statusMap: Record<Status , {lable: string,class:string }> ={
 
 const TaskStatusBadge = ({status} : {status :Status}) => {
   return (
-    <p className={`${statusMap[status].class}`}>
+    <span className={`${statusMap[status].class}`}>
         {statusMap[status].lable}
-    </p>
+    </span>
   )
 }
 

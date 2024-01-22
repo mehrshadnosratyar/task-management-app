@@ -8,9 +8,9 @@ import { taskSchema } from "@/app/taskSchema";
 import BtnLoader from "@/app/components/btnLoader";
 
 interface taskForm {
-  title: string;
-  description: string;
-  owner: number;
+  title:string,
+  description:string,
+  owner:string | number,
 }
 const NewTask = () => {
   const router = useRouter();

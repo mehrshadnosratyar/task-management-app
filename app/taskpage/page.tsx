@@ -13,20 +13,19 @@ const TaskPage = async () => {
         <thead className="text-center">
           <tr className="text-lg">
             <th>عنوان تسک</th>
-
             <th>شناسه صاحب تسک</th>
-
             <th className="hidden md:table-cell">وضعیت تسک</th>
-
             <th className="hidden lg:table-cell">تاریخ تعریف تسک</th>
           </tr>
         </thead>
         <tbody className="text-center">
           {taskData.map((task) => (
             <tr key={task.id}>
-              <td className="space-y-1">
+              <td className="flex flex-col gap-3 link-primary">
+              <Link href={`/taskpage/${task.id}`}>
                 {task.title}
-                <p className="md:hidden">{task.status}</p>
+              </Link>
+                <p className="md:hidden"><TaskStatusBadge status={task.status} /></p>
                 </td>
               <td>{task.owner}</td>
               <td className="hidden md:table-cell"><TaskStatusBadge status={task.status} /></td>
