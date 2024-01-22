@@ -11,14 +11,14 @@ const TaskPage = async () => {
       <Newtaskbtn/>
       <table className="table table-zebra-zebra mt-10">
         <thead className="text-center">
-          <tr className="text-lg">
+          <tr className="text-xl">
             <th>عنوان تسک</th>
             <th>شناسه صاحب تسک</th>
             <th className="hidden md:table-cell">وضعیت تسک</th>
             <th className="hidden lg:table-cell">تاریخ تعریف تسک</th>
           </tr>
         </thead>
-        <tbody className="text-center">
+        <tbody className="text-center text-lg">
           {taskData.map((task) => (
             <tr key={task.id}>
               <td className="flex flex-col gap-3 link-primary">
