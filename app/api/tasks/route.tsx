@@ -16,3 +16,19 @@ export async function POST(request: NextRequest) {
   });
   return NextResponse.json(newTask, { status: 201 });
 }
+export async function PUT(request: NextRequest) {
+  const body = await request.json();
+  const validation = taskSchema.safeParse(body);
+  if (!validation.success)
+    return NextResponse.json(validation.error.errors, { status: 400 });
+  const updatedTask = await prisma.task.update({
+    where: {
+      id: body.id,
+    },
+    data: {
+      title: body.title,
+      description: body.description,
+      owner: body.owner,
+    },
+  });
+}
