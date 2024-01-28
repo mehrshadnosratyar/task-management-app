@@ -88,7 +88,7 @@ const Edittask = ({params} : {params :{id:string}}) => {
             className="textarea textarea-primary w-1/2"
             placeholder="توضیحات تسک"
             defaultValue={!!taskData ? taskData.description : "" }
-            {...register("description")}
+            {...register('description')}
           />
         </div>
         {errors.description && (
