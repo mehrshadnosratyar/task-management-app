@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { taskSchema } from "@/app/taskSchema";
@@ -14,6 +14,14 @@ interface UpdateForm {
 }
 const Edittask = ({params} : {params :{id:string}}) => {
   const router = useRouter();
+  const [taskData , setTaskData] = useState<UpdateForm>()
+  useEffect(()=> {
+    async function getData() {
+      const {data} = await axios.get(`/api/tasks/${params.id}`)
+      setTaskData(data)
+    }
+    getData()
+  },[])
   const {
     register,
     handleSubmit,
@@ -38,7 +46,7 @@ const Edittask = ({params} : {params :{id:string}}) => {
             setSubmiting(true);
             if (typeof data.owner == "string")
               data.owner = parseInt(data.owner);
-            await axios.put("/api/tasks", {...data , id : parseInt(params.id)});
+            await axios.put(`/api/tasks/${params.id}`, data);
             router.push("/taskpage");
           } catch (error) {
             setSubmiting(false);
@@ -51,6 +59,7 @@ const Edittask = ({params} : {params :{id:string}}) => {
             type="text"
             className="input input-primary w-1/2"
             placeholder="عنوان تسک"
+            defaultValue={!!taskData ? taskData.title : "" }
             {...register("title")}
           />
         </div>
@@ -64,6 +73,7 @@ const Edittask = ({params} : {params :{id:string}}) => {
             type="number"
             className="input input-primary w-1/2"
             min={1}
+            defaultValue={!!taskData ? taskData.owner : "" }
             placeholder="شناسه دارنده تسک"
             {...register("owner")}
           />
@@ -77,6 +87,7 @@ const Edittask = ({params} : {params :{id:string}}) => {
           <textarea
             className="textarea textarea-primary w-1/2"
             placeholder="توضیحات تسک"
+            defaultValue={!!taskData ? taskData.description : "" }
             {...register("description")}
           />
         </div>
